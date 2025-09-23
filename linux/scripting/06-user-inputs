@@ -1,0 +1,211 @@
+
+### 1. Basic Input with `read`
+
+```bash
+echo "Enter your name:"
+read name
+echo "Hello, $name!"
+```
+
+* `read` waits for the user to type something and press Enter.
+* The typed value is stored in the variable specified (`name` in this case).
+
+## 2. Multiple Variables
+
+```bash
+echo "Enter first and last name:"
+read first last
+echo "First: $first, Last: $last"
+```
+
+* Splits input by **spaces**.
+* Example input: `John Doe` → `first=John`, `last=Doe`.
+
+
+### 3. Prompt Inline
+
+```bash
+read -p "Enter your age: " age
+echo "You are $age years old."
+```
+
+* `-p` lets you **show the prompt on the same line**.
+
+### 4. Silent / Password Input
+
+```bash
+read -sp "Enter password: " password
+echo
+echo "Password length: ${#password}"
+```
+
+* `-s` → silent (no characters displayed).
+* `-p` → prompt text.
+* Useful for passwords or sensitive info.
+
+
+### 5. Default Value (Fallback)
+
+```bash
+read -p "Enter your city [Default: Delhi]: " city
+city=${city:-Delhi}
+echo "City: $city"
+```
+
+* If user presses Enter without input, `city` will default to `Delhi`.
+
+### 6. Input Timeout
+
+```bash
+if read -t 5 -p "Enter your name within 5 seconds: " name; then
+  echo "Hello, $name"
+else
+  echo "Timeout! No input entered."
+fi
+```
+
+* `-t` sets a **timeout in seconds**.
+* Script continues if user doesn’t type anything in time.
+
+
+### 7. Reading Single Character
+
+```bash
+read -n1 -p "Do you want to continue? (y/n): " answer
+echo
+echo "You pressed: $answer"
+```
+
+* `-n1` → read only **1 character**.
+* No need to press Enter.
+
+
+### 8. Reading Multiple Lines
+
+```bash
+echo "Enter multiple lines (Ctrl+D to finish):"
+input=$(cat)
+echo "You entered:"
+echo "$input"
+```
+
+* Reads input until **EOF (Ctrl+D)**.
+* Useful for multi-line text or copy-paste content.
+
+### 9. Input Validation Example
+
+```bash
+read -p "Enter a number between 1 and 10: " num
+if [[ $num -ge 1 && $num -le 10 ]]; then
+  echo "Valid number: $num"
+else
+  echo "Invalid input!"
+fi
+```
+
+* Combine **user input + condition checks** for safer scripts.
+
+### Summary / Tips
+
+1. **`read variable`** → basic input.
+2. **`-p`** → prompt inline.
+3. **`-s`** → silent input (passwords).
+4. **`-n`** → read limited characters.
+5. **`-t`** → timeout.
+6. **`${var:-default}`** → default values.
+7. Always **validate input** if it will be used in conditions, loops, or arithmetic.
+
+
+## Advanced User Input
+
+### 1. Using `select` for Menus
+
+```bash
+PS3="Choose an option: "
+options=("Install" "Update" "Remove" "Quit")
+select opt in "${options[@]}"; do
+    case $opt in
+        "Install")
+            echo "Installing..."
+            ;;
+        "Update")
+            echo "Updating..."
+            ;;
+        "Remove")
+            echo "Removing..."
+            ;;
+        "Quit")
+            break
+            ;;
+        *)
+            echo "Invalid option"
+            ;;
+    esac
+done
+```
+
+* `PS3` → prompt for the menu.
+* User enters a **number**, `select` sets the variable `opt`.
+* Ideal for simple interactive scripts.
+
+### 2. Input with Validation Loop
+
+```bash
+while true; do
+    read -p "Enter a number (1-5): " num
+    if [[ $num -ge 1 && $num -le 5 ]]; then
+        echo "You selected $num"
+        break
+    else
+        echo "Invalid number, try again."
+    fi
+done
+```
+
+* Loops until user enters **valid input**.
+
+
+### 3. Hidden Input (Password)
+
+```bash
+read -sp "Enter password: " password
+echo
+read -sp "Confirm password: " password2
+echo
+if [[ $password == $password2 ]]; then
+    echo "Passwords match"
+else
+    echo "Passwords do not match"
+fi
+```
+
+* Useful for scripts requiring credentials.
+
+
+### 4. Reading Multiple Words or Lines
+
+```bash
+read -p "Enter your full name: " full_name
+echo "Hello, $full_name"
+
+echo "Enter multiple lines (Ctrl+D to finish):"
+input=$(cat)
+echo "You entered:"
+echo "$input"
+```
+
+* Use `cat` or `read` in a loop for multi-line input.
+
+
+### 5. Timeout Input
+
+```bash
+if read -t 10 -p "Enter your name within 10 seconds: " name; then
+    echo "Hello, $name"
+else
+    echo "Timeout! No input entered."
+fi
+```
+
+* Script continues if user does not respond in time.
+
