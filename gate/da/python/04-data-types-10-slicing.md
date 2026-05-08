@@ -1,17 +1,16 @@
 
-```txt
-# SLICING (GATE DA QUICK REVISION)
+### SLICING (GATE DA QUICK REVISION)
 
-# syntax:
+### syntax:
 s[start : stop : step]
 
-# RULES:
+### RULES:
 - start included
 - stop excluded
 - step default = 1
 - negative index allowed
 
-# STRING EXAMPLE:
+### STRING EXAMPLE:
 s = "abcdef"
 
 s[1:4]     -> "bcd"
@@ -19,12 +18,12 @@ s[:3]      -> "abc"
 s[2:]      -> "cdef"
 s[:]       -> full string
 
-# STEP EXAMPLE:
+### STEP EXAMPLE:
 s[0:6:2]   -> "ace"
 s[::2]     -> "ace"
 s[::-1]    -> reverse -> "fedcba"
 
-# NEGATIVE INDEX:
+### NEGATIVE INDEX:
  a b c d e f
  0 1 2 3 4 5
 -6-5-4-3-2-1
@@ -32,16 +31,16 @@ s[::-1]    -> reverse -> "fedcba"
 s[-3:]     -> "def"
 s[:-2]     -> "abcd"
 
-# REVERSE TRICK:
+### REVERSE TRICK:
 s[::-1]    -> reverse string/list
 
-# LIST SLICING SAME RULE:
+### LIST SLICING SAME RULE:
 L = [1,2,3,4,5]
 
 L[1:4]     -> [2,3,4]
 L[::-1]    -> reverse list
 
-# IMPORTANT GATE TRAPS:
+### IMPORTANT GATE TRAPS:
 
 s[::]      -> full copy
 s[1:100]   -> no error, stops at end
@@ -61,11 +60,9 @@ s[::-2]    -> reverse with step 2
 - `s[2:8:-1]` → returns empty sequence due to mismatch between positive range and negative step.
 
 
-# MEMORY IDEA:
+### MEMORY IDEA:
 - slicing creates new object (new string/list)
 
-# QUICK SUMMARY:
+### QUICK SUMMARY:
 start included, stop excluded, step optional
 [::-1] = reverse
-
-```
