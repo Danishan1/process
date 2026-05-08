@@ -1,0 +1,1 @@
+lets make last minute revision notes of GATE Prepration that summaries all concepts in minimum words and space, less space summarise without styling
