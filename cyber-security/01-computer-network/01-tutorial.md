@@ -1,1 +1,2 @@
-# https://www.youtube.com/watch?v=FNj8jMTOfnA&t=90s
+- 1. Basic Networking: https://www.youtube.com/watch?v=FNj8jMTOfnA&t=90s
+- 2. Kali Linux: https://youtu.be/AoFo7wGkEro?si=qhbY2ebU7G3N4EZU
